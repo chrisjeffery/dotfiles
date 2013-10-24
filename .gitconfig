@@ -1,0 +1,63 @@
+[core]
+    editor = /usr/bin/vim
+    excludesfile = /Users/npaolucci/.gitignore_global
+    pager=less -x4
+
+[alias]
+    #list all aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+	# one line, pretty printed
+    le = log --oneline --decorate
+	# only my commits
+	me =  log --oneline --decorate --author chris.jeffery
+	# graph, one line per commit
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	# graph, two lines per commit. Includes exact time in addition to lg1
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	# print the last commit, copy the branch, submodule directory, and commit_ID to clipboard
+	llg = "!git log -1 && echo $(git rev-parse --abbrev-ref HEAD) on $(basename $(git rev-parse --show-toplevel)): $(git log -1 --format='%H') | xclip"
+	# log with files changed and number of additions deletions in each file
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	# same as above but specify only go back as far as commit id provided as argument
+    lc  = "!f() { git ll "$1"^.."$1"; }; f"
+	# one line including author
+    ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	# graph including author
+    lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+	# author and approximate age one line
+    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	# one line no colors!
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+	#
+	#other stuff
+	magic = rebase -i
+	wrathofgod = clean -d -f
+
+	# push current branch to origin, or to another repo provided as argument
+	puc = "!f() { git push -u ${1:-origin} `git symbolic-ref HEAD`; }; f"
+	punch = push --force
+	puff = pull --ff --ff-only
+	# always merge upstream with --no-ff
+	mergnoff = merge --no-ff
+	# you can use this with --rebase
+	subpull = submodule foreach git pull
+	substatus = submodule foreach git status
+	sfe = "!s() { git $@ && git submodule foreach git $@; }; s" 
+
+[rebase]
+	stat = true
+[color]
+	diff = true
+[push]
+	default = upstream
+[user]
+	email = chris.jeffery@geneity.co.uk
+[rerere]
+	enabled = true
+[merge]
+	tool = mymeld
+[mergetool "mymeld"]
+    cmd = mymeld $BASE $LOCAL $REMOTE $MERGED
+[mergetool "diffconflicts"]
+	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
