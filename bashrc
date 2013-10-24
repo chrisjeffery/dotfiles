@@ -134,6 +134,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# easily reload bashrc
+alias src='source ~/.bashrc'
+
 # set up paths for python and stuff
 export GIT=$HOME/git
 export BASE_PATH=$PATH
@@ -153,6 +156,8 @@ function pt {
     export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
 }
 
+export PATH=$PATH:$HOME/scripts
+
 # sqlplus ( it should match oracle_home, more recent location: rlwrap /usr/lib/oracle/11.2/client64/bin/sqlplus $* ) 
 function sqlp {
     rlwrap /usr/bin/sqlplus64 sportsbook_tb/sportsbook_tb@ora11
@@ -167,12 +172,6 @@ function timplus {
 	python ~/git/PROJ-Playtech/abettersqlplus/absp.py sportsbook_tb@ora11
 }
 
-function upgit {
-	cd ~/git/PROJ-Playtech
-	git pull
-    git pull --recurse-submodules
-}
-
 function vf {
 	vim $(find . -name $1)
 }
@@ -185,7 +184,6 @@ function vr {
 function vrp {
 	vim $(grep -lrs $1 $2)
 }
-
 
 set_term_title() { 
 	echo -en "\033]0;$1\a"
@@ -223,12 +221,9 @@ alias cpuinfo='lscpu'
 ## get GPU ram on desktop / laptop## 
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
-alias src='source ~/.bashrc'
 alias less='less -R'
 alias ack='~/bin/ack'
 alias tmux='~/bin/tmux'
-alias pythoni='ipython'
-
 
 alias ie10='rdesktop wintest-3.lohs.geneity -g 1600x1140 -u geneity -p geneity'
 alias ie8='rdesktop -d GENEITY wintest-7.lohs.geneity -g 1500x1140'
