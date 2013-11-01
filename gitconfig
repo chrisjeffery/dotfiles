@@ -50,14 +50,12 @@
 	diff = true
 [push]
 	default = upstream
-[user]
-	email = chris.jeffery@geneity.co.uk
 [rerere]
 	enabled = true
 [merge]
 	tool = mymeld
 [mergetool "mymeld"]
     cmd = mymeld $BASE $LOCAL $REMOTE $MERGED
-[mergetool "diffconflicts"]
-	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+[mergetool "vimconflicts"]
+	cmd = vimconflicts vim $BASE $LOCAL $REMOTE $MERGED
 	trustExitCode = true
