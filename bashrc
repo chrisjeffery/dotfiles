@@ -227,8 +227,10 @@ alias tmux='~/bin/tmux'
 
 alias ie10='rdesktop wintest-3.lohs.geneity -g 1600x1140 -u geneity -p geneity'
 alias ie8='rdesktop -d GENEITY wintest-7.lohs.geneity -g 1500x1140'
-alias ie8alt4='rdesktop wintest-4.lohs.geneity -g 1500x1140'
-alias ie8alt1='rdesktop wintest-1.lohs.geneity -g 1500x1140'
-alias ie9='rdesktop -d GENEITY wintest-6.lohs.geneity -g 1500x1140'
-alias ie9ps='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1500x1140'
-alias photoshop='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1500x1140'
+alias ie8alt4='rdesktop wintest-4.lohs.geneity -g 1600x1140'
+alias ie8alt1='rdesktop wintest-1.lohs.geneity -g 1600x1140'
+alias ie9='rdesktop -d GENEITY wintest-6.lohs.geneity -g 1600x1140'
+alias ie9ps='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1600x1140'
+alias photoshop='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1600x1140'
+
+export TERM="xterm-256color"
