@@ -36,7 +36,7 @@ Bundle 'tpope/vim-fugitive.git'
 Bundle 'kablamo/vim-git-log'
 Bundle 'scrooloose/nerdtree'
 Bundle 'pydave/AsyncCommand'
-Bundle 'mnick/vim-pomodoro'
+Bundle 'sjl/splice.vim'
 " Bundle 'chrisjeffery/jslint.vim'
 " vim-scripts repos
 " non github repos
@@ -177,19 +177,6 @@ function! ToggleFocusMode()
 endfunc
 nnoremap <F1> :call ToggleFocusMode()<cr>
 
-"""pomodoro configs
-" Duration of a pomodoro in minutes (default: 25)
-let g:pomodoro_time_work = 24
-
-" Duration of a break in minutes (default: 5)
-let g:pomodoro_time_slack = 6 
-
-" Log completed pomodoros, 0 = False, 1 = True (default: 0)
-let g:pomodoro_do_log = 1 
-
-" Path to the pomodoro log file (default: /tmp/pomodoro.log)
-let g:pomodoro_log_file = "$HOME/pomodoro.log" 
-
 " Powerline configs
 "set laststatus=2
 "set encoding=utf-8
@@ -198,4 +185,3 @@ let g:pomodoro_log_file = "$HOME/pomodoro.log"
 
 
 " statusline configs
-set statusline=%#ErrorMsg#%{PomodoroStatus()}%#StatusLine# 
