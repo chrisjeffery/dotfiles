@@ -1,6 +1,13 @@
+
+" Set up indentation
 set smartindent
 set tabstop=4
 set shiftwidth=4
+
+" Split windows more naturally
+set splitbelow
+set splitright
+
 
 set showcmd
 
@@ -23,77 +30,39 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'chrisjeffery/neocomplcache'
-Bundle 'scrooloose/syntastic'
+
+
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'chrisjeffery/neocomplcache'
+" Bundle 'scrooloose/syntastic'
+" Bundle 'pydave/AsyncCommand'
+" Bundle 'sjl/splice.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'kablamo/vim-git-log'
 Bundle 'scrooloose/nerdtree'
-Bundle 'pydave/AsyncCommand'
-Bundle 'sjl/splice.vim'
 Bundle 'airblade/vim-gitgutter'
 
-" Bundle 'chrisjeffery/jslint.vim'
-" vim-scripts repos
-" non github repos
-" ...
-"
-"
 
 
-set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+
+" Powerline configs
+set rtp +=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 set laststatus=2
+set encoding=utf-8
 set t_Co=256
+let g:Powerline_symbols = 'fancy'
 
-filetype plugin indent on     " required!
 
-"for gitgutter:"
+
+"""NERDTree conf
+let NERDTreeShowBookmarks=1
+
+
+
 highlight clear SignColumn
-
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-
-
-" Plugin configs
-"
-let g:EasyMotion_leader_key = '<Leader>'
-
-function! TwiddleCase(str)
-  if a:str ==# toupper(a:str)
-    let result = tolower(a:str)
-  elseif a:str ==# tolower(a:str)
-    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
-  else
-    let result = toupper(a:str)
-  endif
-  return result
-endfunction
-vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
-
-" Search for selected text, forwards or backwards.
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " Pane navigation
 "
@@ -166,39 +135,3 @@ if s:UseTmuxNavigatorMappings()
   nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 endif
 
-" Split windows more naturally
-set splitbelow
-set splitright
-
-""" FocusMode
-function! ToggleFocusMode()
-  if (&foldcolumn != 12)
-    set laststatus=0
-    set numberwidth=10
-    set foldcolumn=12
-    set noruler
-    hi FoldColumn ctermbg=none
-    hi LineNr ctermfg=0 ctermbg=none
-    hi NonText ctermfg=0
-  else
-    set laststatus=2
-    set numberwidth=4
-    set foldcolumn=0
-    set ruler
-    execute 'colorscheme ' . g:colors_name
-  endif
-endfunc
-nnoremap <F1> :call ToggleFocusMode()<cr>
-
-
-"""NERDTree conf
-let NERDTreeShowBookmarks=1
-
-" Powerline configs
-"set laststatus=2
-"set encoding=utf-8
-"set t_Co=256
-"let g:Powerline_symbols = 'fancy'
-
-
-" statusline configs
