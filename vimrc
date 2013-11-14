@@ -37,12 +37,25 @@ Bundle 'kablamo/vim-git-log'
 Bundle 'scrooloose/nerdtree'
 Bundle 'pydave/AsyncCommand'
 Bundle 'sjl/splice.vim'
+Bundle 'airblade/vim-gitgutter'
+
 " Bundle 'chrisjeffery/jslint.vim'
 " vim-scripts repos
 " non github repos
 " ...
+"
+"
+
+
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set laststatus=2
+set t_Co=256
 
 filetype plugin indent on     " required!
+
+"for gitgutter:"
+highlight clear SignColumn
+
 "
 " Brief help
 " :BundleList          - list configured bundles
@@ -176,6 +189,10 @@ function! ToggleFocusMode()
   endif
 endfunc
 nnoremap <F1> :call ToggleFocusMode()<cr>
+
+
+"""NERDTree conf
+let NERDTreeShowBookmarks=1
 
 " Powerline configs
 "set laststatus=2
