@@ -222,8 +222,6 @@ alias cpuinfo='lscpu'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
 alias less='less -R'
-alias ack='~/bin/ack'
-alias tmux='~/bin/tmux'
 
 alias ie10='rdesktop wintest-3.lohs.geneity -g 1600x1140 -u geneity -p geneity'
 alias ie8='rdesktop -d GENEITY wintest-7.lohs.geneity -g 1500x1140'
