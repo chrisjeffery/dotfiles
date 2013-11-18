@@ -38,6 +38,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'pydave/AsyncCommand'
 Bundle 'sjl/splice.vim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-haml'
 
 " Bundle 'chrisjeffery/jslint.vim'
 " vim-scripts repos
