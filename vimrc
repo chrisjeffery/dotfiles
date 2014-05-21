@@ -1,76 +1,189 @@
-set smartindent
-set tabstop=4
-set shiftwidth=4
 
-set showcmd
+"===============================================================================
+" 						NOTHING TO SEE HERE FOLKS
+"===============================================================================
 
-set hlsearch
-set incsearch
 
-nnoremap j gj
-nnoremap k gk
-nmap <Tab> :NERDTreeToggle<CR>
 
-set grepprg=ack\ -k
+
+"===============================================================================
+"						I DON'T KNOW WHY THESE ARE HERE
+"							BUT I KNOW THEY MATTER.
+"===============================================================================
 
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+
+
+"===============================================================================
+" 									PLUGINS
+"===============================================================================
+
+" init vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
 
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'chrisjeffery/neocomplcache'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive.git'
-Bundle 'kablamo/vim-git-log'
-Bundle 'scrooloose/nerdtree'
-Bundle 'pydave/AsyncCommand'
-Bundle 'sjl/splice.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-haml'
+" let Vundle manage Vundle (REQUIRED)
+	Bundle 'gmarik/vundle'
+" git in vim is awesome
+	Bundle 'tpope/vim-fugitive'
+" best plugin for moving the cursor at speed of thought
+	Bundle 'Lokaltog/vim-easymotion'
+" find and open files / buffers with fuzzy + most recent search
+	Bundle 'kien/ctrlp.vim'
+" opens a sidebar with a file browse tree
+	Bundle 'scrooloose/nerdtree'
+" needed for sync with external scripts. pretty bad
+	Bundle 'pydave/AsyncCommand'
+" TODO what is this?
+	Bundle 'chrisjeffery/neocomplcache'
+" TODO I think this works with fugitive
+	Bundle 'kablamo/vim-git-log'
+" TODO wat
+	Bundle 'sjl/splice.vim'
+" TODO I have no idea!
+	Bundle "MarcWeber/vim-addon-mw-utils"
+	Bundle "tomtom/tlib_vim"
+" see which files have been changed
+	Bundle 'airblade/vim-gitgutter'
+" WAT
+	Bundle 'tpope/vim-haml'
+" emmet livestyle -html expansion
+	Bundle 'mattn/livestyle-vim'
+" tell you your js is bad
+	Bundle 'Shutnik/jshint2.vim'
+" SCSS syntax highlighting
+	Bundle 'cakebaker/scss-syntax.vim'
+" list and select from all open buffers
+	Bundle 'vim-scripts/bufexplorer.zip'
+" snippet expansion ftw
+	Bundle "garbas/vim-snipmate"
+	Bundle "honza/vim-snippets"
 
-" Bundle 'chrisjeffery/jslint.vim'
-" vim-scripts repos
-" non github repos
-" ...
-"
-"
 
 
+"===============================================================================
+" 								PLUGIN CONF
+"===============================================================================
+
+"""NERDTree conf
+let NERDTreeShowBookmarks=1
+
+" JSHint config
+let jshint2_command = '/space/bin/jshint'
+let jshint2_save = 1
+
+" powerline requires 256 colors and some other stuff
 set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 set laststatus=2
 set t_Co=256
 
-filetype plugin indent on     " required!
-
-"for gitgutter:"
+" for gitgutter:"
 highlight clear SignColumn
 
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" required for vundle
+filetype plugin indent on
 
 
-" Plugin configs
-"
+
+"===============================================================================
+" 							BETTER MOTION COMMANDS
+"===============================================================================
+
+" makes scrolling smoother
+nnoremap j gj
+nnoremap k gk
+
+" Better indentation in visual mode
+vnoremap > >gv
+vnoremap < <gv
+
+" get to files or buffers easier!
+noremap <script> <silent> <unique> <C-b> :BufExplorer<CR>
+nnoremap <Tab> :NERDTreeToggle<CR>
+
+" from easymotion plugin
 let g:EasyMotion_leader_key = '<Leader>'
+nmap s <Plug>(easymotion-s2)
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+
+
+"===============================================================================
+" 								APPEARANCE
+"===============================================================================
+
+" make tabs, trailing whitespace, and nbsp's visible
+exec "set lcs=tab:\u21E4\u2015,trail:\uB7,nbsp:~"
+
+" Set listchars off for some file types and read only mode
+augroup VisibleNaughtiness
+    autocmd!
+    autocmd BufEnter  *       set list
+	autocmd BufEnter  *.txt   set nolist
+	autocmd BufEnter  *.vp*   set nolist
+	autocmd BufEnter  *       if !&modifiable
+	autocmd BufEnter  *           set nolist
+    autocmd BufEnter  *       endif
+augroup END
+
+" Highlight all search results
+set hlsearch
+set incsearch
+
+
+
+"===============================================================================
+" 								INDENTATION
+"===============================================================================
+
+set smartindent
+set shiftwidth=4
+set tabstop=4
+set noexpandtab
+set smarttab
+
+" some of the above were getting overridden by a plugin, so BufEnter!
+augroup PythonMode
+	autocmd!
+	autocmd BufEnter *.py set ts=4
+	autocmd BufEnter *.py set smarttab
+	autocmd BufEnter *.py set noexpandtab
+augroup END
+
+set showcmd
+set grepprg=ack\ -k
+
+
+
+"===============================================================================
+" 									COLOURS
+"===============================================================================
+
+" Make tabs and listchars be subtle
+hi SpecialKey ctermfg=238 guifg=#649A9A
+
+" Make highlightinh a little less gharish
+hi Search cterm=NONE ctermfg=black ctermbg=magenta
+
+
+
+"===============================================================================
+" 						SHORTCUTS FOR BORING THINGS
+"===============================================================================
 
 function! TwiddleCase(str)
   if a:str ==# toupper(a:str)
@@ -84,17 +197,13 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
 
-" Search for selected text, forwards or backwards.
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+
+
+"===============================================================================
+"							INTEGRATION FOR TMUX
+"===============================================================================
+
 
 " Pane navigation
 "
@@ -167,39 +276,42 @@ if s:UseTmuxNavigatorMappings()
   nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 endif
 
+
 " Split windows more naturally
 set splitbelow
 set splitright
 
-""" FocusMode
-function! ToggleFocusMode()
-  if (&foldcolumn != 12)
-    set laststatus=0
-    set numberwidth=10
-    set foldcolumn=12
-    set noruler
-    hi FoldColumn ctermbg=none
-    hi LineNr ctermfg=0 ctermbg=none
-    hi NonText ctermfg=0
-  else
-    set laststatus=2
-    set numberwidth=4
-    set foldcolumn=0
-    set ruler
-    execute 'colorscheme ' . g:colors_name
-  endif
-endfunc
-nnoremap <F1> :call ToggleFocusMode()<cr>
 
 
-"""NERDTree conf
-let NERDTreeShowBookmarks=1
+
+"function! Smart_TabComplete()
+"  let line = getline('.')                         " current line
+"
+"  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+"                                                  " line to one character right
+"                                                  " of the cursor
+"  let leading = substr
+"
+"  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+"  if (strlen(substr)==0)                          " nothing to match on empty string
+"    return "\<tab>"
+"  endif
+"  let has_period = match(substr, '\.') != -1      " position of period, if any
+"  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+"  if (!has_period && !has_slash)
+"    return "\<C-X>\<C-P>"                         " existing text matching
+"  elseif ( has_slash )
+"    return "\<C-X>\<C-F>"                         " file matching
+"  else
+"    return "\<C-X>\<C-O>"                         " plugin matching
+"  endif
+"endfunction
+"inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 " Powerline configs
 "set laststatus=2
 "set encoding=utf-8
 "set t_Co=256
-"let g:Powerline_symbols = 'fancy'
-
+let g:Powerline_symbols = 'fancy'
 
 " statusline configs
