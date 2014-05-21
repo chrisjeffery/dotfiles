@@ -156,7 +156,6 @@ function pt {
     export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
 }
 
-export PATH=$PATH:$HOME/scripts
 
 # sqlplus ( it should match oracle_home, more recent location: rlwrap /usr/lib/oracle/11.2/client64/bin/sqlplus $* ) 
 function sqlp {
@@ -214,6 +213,8 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
  
 ## Get server cpu info ##
 alias cpuinfo='lscpu'
+alias projector_attach='xrandr --output HDMI1 --auto --left-of LVDS1'
+alias projector_detach='xrandr --output HDMI1 --off'
  
 ## older system use /proc/cpuinfo ##
 ##alias cpuinfo='less /proc/cpuinfo' ##
@@ -230,5 +231,22 @@ alias ie8alt1='rdesktop wintest-1.lohs.geneity -g 1600x1140'
 alias ie9='rdesktop -d GENEITY wintest-6.lohs.geneity -g 1600x1140'
 alias ie9ps='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1600x1140'
 alias photoshop='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1600x1140'
+alias tmux='tmux -2'
+alias intellij='~/intellij/bin/idea.sh'
 
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
+export CHROME_BIN=google-chrome-stable
+
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/.meteor:$PATH
+export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
+export PATH=$HOME/scripts:$PATH
+export PATH=$HOME/dart/dart-sdk/bin:$PATH
+export PATH=$HOME/intellij/bin/idea.sh:$PATH
+
+export EDITOR=vim
+
+# source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh 
+
