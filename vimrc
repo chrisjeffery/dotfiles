@@ -79,7 +79,6 @@ call vundle#rc()
 	Bundle "honza/vim-snippets"
 
 Bundle 'derekwyatt/vim-scala'
-Bundle 'kablamo/vim-git-log'
 Bundle 'flazz/vim-colorschemes'
 
 
