@@ -353,6 +353,5 @@ endif
 "set t_Co=256
 let g:Powerline_symbols = 'fancy'
 
-colorscheme distinguished
-" source $HOME/dotfiles/vim-colors/distinguished.vim
-syntax enable
+" colorscheme distinguished
+source $HOME/dotfiles/vim-colors/distinguished.vim
