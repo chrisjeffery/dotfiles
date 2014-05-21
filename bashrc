@@ -148,29 +148,35 @@ export ORACLE_SID=XE
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
 
 # function to set up PROJ-Playtech paths
+function genora {
+	export PROJ_HOME=$GIT/multiop
+	export PATH=$PATH:$PROJ_HOME/python/bin
+	#PYTHONPATH=$PROJ_HOME/python/appserv
+	export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
+	$HOME/git/multiop/abettersqlplus/absp.py "$@"
+}
+
 function pt {
-    export PROJ_HOME=$GIT/PROJ-MultiOp
+    export PROJ_HOME=$GIT/multiop
     export PATH=$BASE_PATH:$PROJ_HOME/python/bin
     
-    PYTHONPATH=$PROJ_HOME/python/appserv
     export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
 }
 
-export PATH=$PATH:$HOME/scripts
-
-# sqlplus ( it should match oracle_home, more recent location: rlwrap /usr/lib/oracle/11.2/client64/bin/sqlplus $* ) 
-function sqlp {
-    rlwrap /usr/bin/sqlplus64 sportsbook_tb/sportsbook_tb@ora11
+function pbfv {
+    export PROJ_HOME=$GIT/PROJ-BetfairVirtual
+    export PATH=$BASE_PATH:$PROJ_HOME/python/bin
+    export PYTHONPATH=$PROJ_HOME/python/appserv
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/resources/db/oracle
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/apps/python
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/userauth/python
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/pools/utils
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/feeds/python
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/sportsbook/apps/python
+    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/custacct/python
 }
 
-
-function sqlptest {
-    rlwrap /usr/bin/sqlplus64 sportsbook_tbtest/sportsbook_tbtest@ora11
-}
-
-function timplus {
-	python ~/git/PROJ-Playtech/abettersqlplus/absp.py sportsbook_tb@ora11
-}
 
 function vf {
 	vim $(find . -name $1)
@@ -224,13 +230,35 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 alias less='less -R'
 alias ack='~/bin/ack'
 alias tmux='~/bin/tmux'
+alias node='/space/bin/node'
+alias npm='/space/bin/npm'
+alias sqlp='rlwrap /usr/lib/oracle/11.2/client64/bin/sqlplus'
+alias nose='nosetests --rednose'
 
-alias ie10='rdesktop wintest-3.lohs.geneity -g 1600x1140 -u geneity -p geneity'
-alias ie8='rdesktop -d GENEITY wintest-7.lohs.geneity -g 1500x1140'
-alias ie8alt4='rdesktop wintest-4.lohs.geneity -g 1600x1140'
-alias ie8alt1='rdesktop wintest-1.lohs.geneity -g 1600x1140'
-alias ie9='rdesktop -d GENEITY wintest-6.lohs.geneity -g 1600x1140'
-alias ie9ps='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1600x1140'
-alias photoshop='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1600x1140'
+alias lock='i3lock -n -d -c 222830'
+
+alias ie8='rdesktop -d GENEITY wintest-7.lohs.geneity -g 1800x1140'
+alias ie8alt4='rdesktop wintest-4.lohs.geneity -g 1800x1140'
+alias ie8alt1='rdesktop wintest-1.lohs.geneity -g 1800x1140'
+alias ie9='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1800x1140'
+alias ie10='photoshop'
+#alias ie9ps='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1800x1140'
+alias photoshop='rdesktop -d GENEITY wintest-9.lohs.geneity -g 1910x1180'
+alias photoshopfullscreen='rdesktop -d GENEITY wintest-9.lohs.geneity -f'
+
+alias pain='ie8'
+
+alias watchsassbfv='cd ~/git/; sass --sourcemap --style expanded -I PROJ-BetfairVirtual/cms/apps/web/static/scss -I PROJ-BetfairVirtual/betfair_virtual/static/desktop/betfair_virtual/scss --watch PROJ-BetfairVirtual/betfair_virtual/static/desktop/betfair_virtual/scss:PROJ-BetfairVirtual/betfair_virtual/static/desktop/betfair_virtual/css'
 
 export TERM="xterm-256color"
+
+export PATH=/space/bin:$HOME/scripts:$HOME/.gem/ruby/2.8/bin:$PATH
+export PATH=/space/lib:$PATH
+
+
+
+##PATH=$HOME/.local/bin:$PATH
+##if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
+##    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+##fi
+
