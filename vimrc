@@ -3,7 +3,23 @@
 " 						NOTHING TO SEE HERE FOLKS
 "===============================================================================
 
+" Set up indentation
+syntax enable
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
+" Split windows more naturally
+set splitbelow
+set splitright
+
+set showcmd
+set laststatus=2
+set encoding=utf-8
+set t_Co=256
+
+set grepprg=ack\ -k
 
 
 "===============================================================================
@@ -62,6 +78,10 @@ call vundle#rc()
 	Bundle "garbas/vim-snipmate"
 	Bundle "honza/vim-snippets"
 
+Bundle 'derekwyatt/vim-scala'
+Bundle 'kablamo/vim-git-log'
+Bundle 'flazz/vim-colorschemes'
+
 
 
 "===============================================================================
@@ -79,12 +99,17 @@ let jshint2_save = 1
 set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 set laststatus=2
 set t_Co=256
+let g:Powerline_symbols = 'fancy'
 
 " for gitgutter:"
 highlight clear SignColumn
 
 " required for vundle
 filetype plugin indent on
+
+
+"""NERDTree conf
+let NERDTreeShowBookmarks=1
 
 
 
@@ -107,6 +132,19 @@ nnoremap <Tab> :NERDTreeToggle<CR>
 " from easymotion plugin
 let g:EasyMotion_leader_key = '<Leader>'
 nmap s <Plug>(easymotion-s2)
+
+""" easymotion config
+nmap <space> <Plug>(easymotion-s2)
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> # :<C-U>
@@ -236,14 +274,20 @@ function! s:TmuxWinCmd(direction)
   endif
 endfunction
 
+function! s:TmuxRun(shellCommand)
+  if s:InTmuxSession()
+ 		let cmd = "tmux respawn-pane -k -t work:1.1 ls"
+		silent call system(cmd)
+	endif
+endfunction
+
 function! s:TmuxAwareNavigate(direction)
   let nr = winnr()
   let tmux_last_pane = (a:direction == 'p' && s:tmux_is_last_pane)
   if !tmux_last_pane
     call s:VimNavigate(a:direction)
   endif
-  " Forward the switch panes command to tmux if:
-  " a) we're toggling between the last tmux pane;
+  " Forward the switch panes command to tmux if: " a) we're toggling between the last tmux pane;
   " b) we tried switching windows in vim but it didn't have effect.
   if tmux_last_pane || nr == winnr()
     let cmd = 'tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR')
@@ -268,20 +312,16 @@ command! TmuxNavigateUp call <SID>TmuxWinCmd('k')
 command! TmuxNavigateRight call <SID>TmuxWinCmd('l')
 command! TmuxNavigatePrevious call <SID>TmuxWinCmd('p')
 
+command! TmuxRunMocha call <SID>TmuxRun('mocha')
+
 if s:UseTmuxNavigatorMappings()
   nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
   nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
   nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
   nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
   nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+	nnoremap <cr> :call RunAllSpecs()<cr>
 endif
-
-
-" Split windows more naturally
-set splitbelow
-set splitright
-
-
 
 
 "function! Smart_TabComplete()
@@ -314,4 +354,6 @@ set splitright
 "set t_Co=256
 let g:Powerline_symbols = 'fancy'
 
-" statusline configs
+colorscheme distinguished
+" source $HOME/dotfiles/vim-colors/distinguished.vim
+syntax enable

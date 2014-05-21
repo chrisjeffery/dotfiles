@@ -220,6 +220,8 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
  
 ## Get server cpu info ##
 alias cpuinfo='lscpu'
+alias projector_attach='xrandr --output HDMI1 --auto --left-of LVDS1'
+alias projector_detach='xrandr --output HDMI1 --off'
  
 ## older system use /proc/cpuinfo ##
 ##alias cpuinfo='less /proc/cpuinfo' ##
@@ -256,9 +258,27 @@ export PATH=/space/bin:$HOME/scripts:$HOME/.gem/ruby/2.8/bin:$PATH
 export PATH=/space/lib:$PATH
 
 
-
 ##PATH=$HOME/.local/bin:$PATH
 ##if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
 ##    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 ##fi
+
+alias tmux='tmux -2'
+alias intellij='~/intellij/bin/idea.sh'
+
+# export TERM="xterm-256color"
+export CHROME_BIN=google-chrome-stable
+
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/.meteor:$PATH
+export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
+export PATH=$HOME/scripts:$PATH
+export PATH=$HOME/dart/dart-sdk/bin:$PATH
+export PATH=$HOME/intellij/bin/idea.sh:$PATH
+
+export EDITOR=vim
+
+# source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh 
 
