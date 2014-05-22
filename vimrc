@@ -82,6 +82,8 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'flazz/vim-colorschemes'
 
 
+"vim-spec configs
+" let g:rspec_command = "!bundle exec rspec --color {spec}"
 
 "===============================================================================
 " 								PLUGIN CONF
@@ -105,10 +107,6 @@ highlight clear SignColumn
 
 " required for vundle
 filetype plugin indent on
-
-
-"""NERDTree conf
-let NERDTreeShowBookmarks=1
 
 
 

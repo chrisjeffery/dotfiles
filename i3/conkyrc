@@ -39,7 +39,7 @@ TEXT
 # { "full_text" : "media ${fs_free /home/chris/media}" , "color" : "\#ffffff" },
 
 [
-  { "full_text" : "${exec acpi -b | awk '{print $3, $4, $5}'}" , "color" : "${exec acpi -b | awk '{print $4}' | sed 's/[^0-9]//g' | ~/scripts/colourise_percentage.py }" },
+  { "full_text" : "${exec acpi -b | awk '{print $3, $4, $5}'}" , "color" : "\#${exec acpi -b | awk '{print $4}' | sed 's/[^0-9]//g' | ~/scripts/colourise_percentage.py }" },
   { "full_text" : "/ ${fs_free /}" , "color" : "\#ffffff" },
   { "full_text" : "home ${fs_free /home/chris}" , "color" : "\#ffffff" },
   { "full_text" : "${tztime}" , "color" : "ffddaa" },

@@ -184,7 +184,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 bar {
-    font inconsolata
+    font inconsolata 12px
     status_command $HOME/dotfiles/conky-i3bar.sh
     # status_command i3status
 }
