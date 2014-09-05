@@ -23,6 +23,10 @@ BBLE="\[\033[44m\]" # background blue
 BMAG="\[\033[45m\]" # background magenta
 BCYN="\[\033[46m\]" # background cyan
 
+ERS='echo -e "\[\033[0m\]"'
+EFGRN='echo -e "\[\033[32m\]"'
+
+
 #######################################################
 # This file is controlled by puppet if it is in /etc! #
 #######################################################
@@ -58,11 +62,6 @@ shopt -s checkwinsize
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -105,28 +104,28 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias grep='grep --color=always'
+    alias fgrep='fgrep --color=always'
+    alias egrep='egrep --color=always'
 fi
-
-# some more ls aliases
-alias l='ls -l'
-alias ll='ls -Al'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+alias src='source ~/.bashrc'
+
+if [ -f ~/.envrc ]; then
+    . ~/.envrc
+fi
+
+alias src='source ~/.bashrc'
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -135,33 +134,23 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # easily reload bashrc
-alias src='source ~/.bashrc'
 
-# set up paths for python and stuff
-export GIT=$HOME/git
-export BASE_PATH=$PATH
 
-# oracle stuff
-# check the location of your oracle files!
-export ORACLE_HOME=/usr/lib/oracle/11.2/client64
-export ORACLE_SID=XE
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+# source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh 
 
-# function to set up PROJ-Playtech paths
-function genora {
-	export PROJ_HOME=$GIT/multiop
-	export PATH=$PATH:$PROJ_HOME/python/bin
-	#PYTHONPATH=$PROJ_HOME/python/appserv
-	export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
-	$HOME/git/multiop/abettersqlplus/absp.py "$@"
+function vf {
+	vim $(find . -name $1)
 }
 
-function pt {
-    export PROJ_HOME=$GIT/multiop
-    export PATH=$BASE_PATH:$PROJ_HOME/python/bin
-    
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
+## open all files matching regex in vim
+function vr {
+	vim $(grep -lrs $1 ./)
 }
+
+function vrp {
+	vim $(grep -lrs $1 $2)
+}
+
 
 function pbfv {
     export PROJ_HOME=$GIT/PROJ-BetfairVirtual
@@ -178,19 +167,6 @@ function pbfv {
 }
 
 
-function vf {
-	vim $(find . -name $1)
-}
-
-## open all files matching regex in vim
-function vr {
-	vim $(grep -lrs $1 ./)
-}
-
-function vrp {
-	vim $(grep -lrs $1 $2)
-}
-
 set_term_title() { 
 	echo -en "\033]0;$1\a"
 }
@@ -206,79 +182,3 @@ function sbserver {
 	set_term_title $1
 	runlog $1
 }
-
-## pass options to free ## 
-alias meminfo='free -m -l -t'
- 
-## get top process eating memory
-alias psmem='ps auxf | sort -nr -k 4'
-alias psmem10='ps auxf | sort -nr -k 4 | head -10'
- 
-## get top process eating cpu ##
-alias pscpu='ps auxf | sort -nr -k 3'
-alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
- 
-## Get server cpu info ##
-alias cpuinfo='lscpu'
-alias projector_attach='xrandr --output HDMI1 --auto --left-of LVDS1'
-alias projector_detach='xrandr --output HDMI1 --off'
- 
-## older system use /proc/cpuinfo ##
-##alias cpuinfo='less /proc/cpuinfo' ##
- 
-## get GPU ram on desktop / laptop## 
-alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
-
-alias less='less -R'
-alias ack='~/bin/ack'
-alias tmux='~/bin/tmux'
-alias node='/space/bin/node'
-alias npm='/space/bin/npm'
-alias sqlp='rlwrap /usr/lib/oracle/11.2/client64/bin/sqlplus'
-alias nose='nosetests --rednose'
-
-alias lock='i3lock -n -d -c 222830'
-
-alias ie8='rdesktop -d GENEITY wintest-7.lohs.geneity -g 1800x1140'
-alias ie8alt4='rdesktop wintest-4.lohs.geneity -g 1800x1140'
-alias ie8alt1='rdesktop wintest-1.lohs.geneity -g 1800x1140'
-alias ie9='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1800x1140'
-alias ie10='photoshop'
-#alias ie9ps='rdesktop -d GENEITY wintest-8.lohs.geneity -g 1800x1140'
-alias photoshop='rdesktop -d GENEITY wintest-9.lohs.geneity -g 1910x1180'
-alias photoshopfullscreen='rdesktop -d GENEITY wintest-9.lohs.geneity -f'
-
-alias pain='ie8'
-
-alias watchsassbfv='cd ~/git/; sass --sourcemap --style expanded -I PROJ-BetfairVirtual/cms/apps/web/static/scss -I PROJ-BetfairVirtual/betfair_virtual/static/desktop/betfair_virtual/scss --watch PROJ-BetfairVirtual/betfair_virtual/static/desktop/betfair_virtual/scss:PROJ-BetfairVirtual/betfair_virtual/static/desktop/betfair_virtual/css'
-
-export TERM="xterm-256color"
-
-export PATH=/space/bin:$HOME/scripts:$HOME/.gem/ruby/2.8/bin:$PATH
-export PATH=/space/lib:$PATH
-
-
-##PATH=$HOME/.local/bin:$PATH
-##if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
-##    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-##fi
-
-alias tmux='tmux -2'
-alias intellij='~/intellij/bin/idea.sh'
-
-# export TERM="xterm-256color"
-export CHROME_BIN=google-chrome-stable
-
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/local/bin:$PATH
-export PATH=$HOME/.meteor:$PATH
-export PATH=$HOME/.gem/ruby/2.1.0/bin:$PATH
-export PATH=$HOME/.gem/ruby/2.0.0/bin:$PATH
-export PATH=$HOME/scripts:$PATH
-export PATH=$HOME/dart/dart-sdk/bin:$PATH
-export PATH=$HOME/intellij/bin/idea.sh:$PATH
-
-export EDITOR=vim
-
-# source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh 
-
