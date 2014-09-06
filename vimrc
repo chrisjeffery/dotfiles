@@ -21,6 +21,9 @@ set t_Co=256
 
 set grepprg=ack\ -k
 
+" insecure yo
+set modeline
+
 
 "===============================================================================
 "						I DON'T KNOW WHY THESE ARE HERE
@@ -66,6 +69,8 @@ call vundle#rc()
 	Bundle 'airblade/vim-gitgutter'
 " WAT
 	Bundle 'tpope/vim-haml'
+" Dispatch
+	Bundle 'tpope/vim-dispatch'
 " emmet livestyle -html expansion
 	Bundle 'mattn/livestyle-vim'
 " tell you your js is bad
@@ -77,6 +82,8 @@ call vundle#rc()
 " snippet expansion ftw
 	Bundle "garbas/vim-snipmate"
 	Bundle "honza/vim-snippets"
+" so you can have grep, in vim, except it's ack
+	Bundle "mileszs/ack.vim"
 
 Bundle 'derekwyatt/vim-scala'
 Bundle 'flazz/vim-colorschemes'
@@ -95,6 +102,8 @@ let NERDTreeShowBookmarks=1
 " JSHint config
 let jshint2_command = '/space/bin/jshint'
 let jshint2_save = 1
+
+let g:ack_use_dispatch = 1
 
 " powerline requires 256 colors and some other stuff
 set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
@@ -135,6 +144,10 @@ nmap <space> <Plug>(easymotion-s2)
 " Gif config
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
+map  ? <Plug>(easymotion-sn)
+omap ? <Plug>(easymotion-tn)
+
+"easymotion means we don't want backwards search, so we can reuse ?
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide

@@ -1,13 +1,17 @@
 [core]
     editor = /usr/bin/vim
-    excludesfile = /Users/npaolucci/.gitignore_global
-    pager=less -x4
+    pager=less -FR -x4
 
 [alias]
     #list all aliases
-    la = "!git config -l | grep alias | cut -c 7-"
+	la = "!git config -l | grep alias | cut -c 7- | sed -e 's/^/\t\t&/' | sed -e 's/=/\t= /'"
+
+	# descendents = "!f() { git log --format=format:'%H' --ancestry-path $1..HEAD}; f"
+	# oldest-descendent = "!f() { comm --nocheck-order -12 <(git log --format=format:'%H' $1..HEAD) <(git log --format=format'%H' $2..HEAD) | tail -1}; f"
+
 	# one line, pretty printed
     le = log --oneline --decorate
+	lcommits = log --format=format:'%H'
 	# only my commits
 	me =  log --oneline --decorate --author chris.jeffery
 	# graph, one line per commit
@@ -17,32 +21,60 @@
 	# print the last commit, copy the branch, submodule directory, and commit_ID to clipboard
 	llg = "!git log -1 && echo $(git rev-parse --abbrev-ref HEAD) on $(basename $(git rev-parse --show-toplevel)): $(git log -1 --format='%H') | xclip"
 	# log with files changed and number of additions deletions in each file
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]%Creset" --decorate --numstat
 	# same as above but specify only go back as far as commit id provided as argument
     lc  = "!f() { git ll "$1"^.."$1"; }; f"
 	# one line including author
-    ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ls1 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]%Creset" --decorate
 	# graph including author
-    lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph
+    lds = log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]%Creset" --decorate --date=short --graph
 	# author and approximate age one line
-    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]%Creset" --decorate --date=relative
 	# one line no colors!
-    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    lnc = log --pretty=format:"%h\\ neJulien%s\\ [%cn]"
+
+	jira = "!echo branch $(git rev-parse --abbrev-ref HEAD) on submodule $(basename $(git rev-parse --show-toplevel)): && git ljira"
+
+	ljira = log --pretty=format:"%Cblue%H%Cred%d%n%C(yellow)%s%Creset" --numstat
+
+	# some things are too long to type 1000 times a day
+	#s = status
+	s = status --ignore-submodules
+	co = checkout
+	cob = checkout -b
+	b = branch
+	bv = "!git fetch && git branch -vv"
+	bn = branch -vv --no-merged
+	has = branch -vv --all --contains
+	bm = branch --move
+	bname = "!git branch | grep '*' | cut -c 3-"
+
+	ocd = "oldest-common-descendent"
+
+
 	#
 	#other stuff
 	magic = rebase -i
-	wrathofgod = clean -d -f
+	wrath = clean -d -f
+	pray = clean -d -f --dry-run
+
+	#dark magic
+	voodoo = "!f() { git submodule foreach 'git merge-base --is-ancestor $2 HEAD && git rebase --fork-point --onto $1 $2 || :; }; f"
 
 	# push current branch to origin, or to another repo provided as argument
 	puc = "!f() { git push -u ${1:-origin} `git symbolic-ref HEAD`; }; f"
 	punch = push --force
 	puff = pull --ff --ff-only
 	# always merge upstream with --no-ff
-	mergnoff = merge --no-ff
+	fmg = merge --no-ff
 	# you can use this with --rebase
 	subpull = submodule foreach git pull
-	substatus = submodule foreach git status
+	# ss = "!git submodule foreach git bv | grep --color=never '*\|Entering' "
+	sb = "!f() { git status --ignore-submodules -s && git bname ; }; f"
+	sst = submodule foreach git status --ignore-submodules
+	ssts = submodule foreach 
 	sfe = "!s() { git $@ && git submodule foreach git $@; }; s" 
+
 
 [rebase]
 	stat = true
@@ -50,12 +82,15 @@
 	diff = true
 [push]
 	default = upstream
+[user]
+	email = chris.jeffery@geneity.co.uk
 [rerere]
 	enabled = true
 [merge]
 	tool = mymeld
 [mergetool "mymeld"]
     cmd = mymeld $BASE $LOCAL $REMOTE $MERGED
-[mergetool "vimconflicts"]
-	cmd = vimconflicts vim $BASE $LOCAL $REMOTE $MERGED
+[mergetool "vimtime"]
+	cmd = vim -O $BASE $LOCAL $REMOTE $MERGED
+
 	trustExitCode = true
