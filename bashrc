@@ -230,10 +230,10 @@ alias projector_detach='xrandr --output HDMI1 --off'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
 alias less='less -R'
-alias ack='~/bin/ack'
-alias tmux='~/bin/tmux'
-alias node='/space/bin/node'
-alias npm='/space/bin/npm'
+# alias ack='~/bin/ack'
+# alias tmux='~/bin/tmux'
+# alias node='/space/bin/node'
+# alias npm='/space/bin/npm'
 alias sqlp='rlwrap /usr/lib/oracle/11.2/client64/bin/sqlplus'
 alias nose='nosetests --rednose'
 
@@ -254,9 +254,6 @@ alias watchsassbfv='cd ~/git/; sass --sourcemap --style expanded -I PROJ-Betfair
 
 export TERM="xterm-256color"
 
-export PATH=/space/bin:$HOME/scripts:$HOME/.gem/ruby/2.8/bin:$PATH
-export PATH=/space/lib:$PATH
-
 
 ##PATH=$HOME/.local/bin:$PATH
 ##if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
@@ -265,10 +262,16 @@ export PATH=/space/lib:$PATH
 
 alias tmux='tmux -2'
 alias intellij='~/intellij/bin/idea.sh'
+alias nobeeps='sudo rmmod pcspkr'
+alias wifi='sudo wifi-menu'
 
 # export TERM="xterm-256color"
 export CHROME_BIN=google-chrome-stable
 
+export PATH=/space/bin:$HOME/scripts:$HOME/.gem/ruby/2.8/bin:$PATH
+export PATH=/space/lib:$PATH
+
+export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
 export PATH=$HOME/.meteor:$PATH
