@@ -55,7 +55,7 @@ call vundle#rc()
 " opens a sidebar with a file browse tree
 	Bundle 'scrooloose/nerdtree'
 " needed for sync with external scripts. pretty bad
-	Bundle 'pydave/AsyncCommand'
+"	Bundle 'pydave/AsyncCommand'
 " TODO what is this?
 	Bundle 'chrisjeffery/neocomplcache'
 " TODO I think this works with fugitive
