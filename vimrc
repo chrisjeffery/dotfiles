@@ -40,54 +40,53 @@ filetype off                   " required!
 "===============================================================================
 
 " init vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 
 " let Vundle manage Vundle (REQUIRED)
-	Bundle 'gmarik/vundle'
+	Plugin 'gmarik/vundle'
 " git in vim is awesome
-	Bundle 'tpope/vim-fugitive'
+	Plugin 'tpope/vim-fugitive'
 " best plugin for moving the cursor at speed of thought
-	Bundle 'Lokaltog/vim-easymotion'
+	Plugin 'Lokaltog/vim-easymotion'
 " find and open files / buffers with fuzzy + most recent search
-	Bundle 'kien/ctrlp.vim'
+	Plugin 'kien/ctrlp.vim'
 " opens a sidebar with a file browse tree
-	Bundle 'scrooloose/nerdtree'
+	Plugin 'scrooloose/nerdtree'
 " needed for sync with external scripts. pretty bad
-"	Bundle 'pydave/AsyncCommand'
+"	Plugin 'pydave/AsyncCommand'
 " TODO what is this?
-	Bundle 'chrisjeffery/neocomplcache'
+	Plugin 'chrisjeffery/neocomplcache'
 " TODO I think this works with fugitive
-	Bundle 'kablamo/vim-git-log'
+	Plugin 'kablamo/vim-git-log'
 " TODO wat
-	Bundle 'sjl/splice.vim'
+	Plugin 'sjl/splice.vim'
 " TODO I have no idea!
-	Bundle "MarcWeber/vim-addon-mw-utils"
-	Bundle "tomtom/tlib_vim"
+	Plugin 'MarcWeber/vim-addon-mw-utils'
+	Plugin 'tomtom/tlib_vim'
 " see which files have been changed
-	Bundle 'airblade/vim-gitgutter'
+	Plugin 'airblade/vim-gitgutter'
 " WAT
-	Bundle 'tpope/vim-haml'
-" Dispatch
-	Bundle 'tpope/vim-dispatch'
+	Plugin 'tpope/vim-haml'
 " emmet livestyle -html expansion
-	Bundle 'mattn/livestyle-vim'
+	Plugin 'mattn/livestyle-vim'
 " tell you your js is bad
-	Bundle 'Shutnik/jshint2.vim'
+	Plugin 'Shutnik/jshint2.vim'
 " SCSS syntax highlighting
-	Bundle 'cakebaker/scss-syntax.vim'
+	Plugin 'cakebaker/scss-syntax.vim'
 " list and select from all open buffers
-	Bundle 'vim-scripts/bufexplorer.zip'
+	Plugin 'vim-scripts/bufexplorer.zip'
 " snippet expansion ftw
-	Bundle "garbas/vim-snipmate"
-	Bundle "honza/vim-snippets"
-" so you can have grep, in vim, except it's ack
-	Bundle "mileszs/ack.vim"
+	Plugin 'garbas/vim-snipmate'
+	Plugin 'honza/vim-snippets'
+" we're not using powerline because we only use it for vim anyway
+	Plugin 'bling/vim-airline'
+	Plugin 'mileszs/ack.vim'
+	Plugin 'derekwyatt/vim-scala'
+	Plugin 'flazz/vim-colorschemes'
 
-Bundle 'derekwyatt/vim-scala'
-Bundle 'flazz/vim-colorschemes'
-
+call vundle#end()
 
 "vim-spec configs
 " let g:rspec_command = "!bundle exec rspec --color {spec}"
@@ -95,6 +94,9 @@ Bundle 'flazz/vim-colorschemes'
 "===============================================================================
 " 								PLUGIN CONF
 "===============================================================================
+"
+
+let g:airline_powerline_fonts = 1
 
 """NERDTree conf
 let NERDTreeShowBookmarks=1

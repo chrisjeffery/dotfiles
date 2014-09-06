@@ -182,3 +182,8 @@ function sbserver {
 	set_term_title $1
 	runlog $1
 }
+
+export EDITOR=vim
+alias nobeeps='sudo rmmod pcspkr'
+alias wifi='sudo wifi-menu'
+

@@ -32,11 +32,13 @@ override_utf8_locale no
 cpu_avg_samples 2
 
 # Stuff after 'TEXT' will be formatted on screen
+# | ~/scripts/colourise_percentage.py }" },"color" : "\#${exec acpi -b | awk '{print $4}' | sed 's/[^0-9]//g' }"
 TEXT
 
 # JSON for i3bar
 # { "full_text" : "space ${fs_free /home/chris/space}" , "color" : "\#ffffff" },
 # { "full_text" : "media ${fs_free /home/chris/media}" , "color" : "\#ffffff" },
+#  { "full_text" : " ${exec acpi -b | awk '{print $3, $4, $5}'} " },
 
 [
   { "full_text" : "${exec acpi -b | awk '{print $3, $4, $5}'}" , "color" : "\#${exec acpi -b | awk '{print $4}' | sed 's/[^0-9]//g' | ~/scripts/colourise_percentage.py }" },
