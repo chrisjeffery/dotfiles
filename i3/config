@@ -19,19 +19,19 @@ client.urgent	#ffddaa #333333 #ffffff #330000
 #exec spotify;
 #for_window [instance="spotify"] move workspace 10;
 
-#exec terminator -e 'vim ~/todo' -c todo
-exec terminator -e 'vim -O ~/notes/workdo ~/notes/lifedo' -c todo;
-bindsym $mod+F2 exec terminator -e 'vim -O ~/notes/workdo ~/notes/lifedo' -c todo;
+set $term urxvt
+
+exec $term -e 'vim -O ~/notes/workdo ~/notes/lifedo' -c todo;
+bindsym $mod+F2 exec $term -e 'vim -O ~/notes/workdo ~/notes/lifedo' -c todo;
 for_window [instance="todo"] mark todo;
 for_window [instance="todo"] move scratchpad; [instance="todo"] scratchpad show; floating enable; border 1pixel; move scratchpad;
 bindsym $mod+semicolon [instance="todo"] scratchpad show;
 
 
-bindsym $mod+F1 exec terminator -c alsafloat -e 'alsamixer';
-bindsym $mod+F2 exec --no-startup-id urxvt -name 'metask';
+bindsym $mod+F1 exec $term -c alsafloat -e 'alsamixer';
 bindsym $mod+F6 exec ~/scripts/toggle_touchpad.sh
-bindsym $mod+F7 exec terminator -c wififloat -e 'sudo wifi-menu';
-bindsym $mod+F8 exec terminator -c topfloat -e  'htop';
+bindsym $mod+F7 exec $term -c wififloat -e 'sudo wifi-menu';
+bindsym $mod+F8 exec $term -c topfloat -e  'htop';
 #needs to be png
 bindsym $mod+F9 exec i3lock -d -i ~/Pictures/poi-4-of-451.jpg
 
@@ -63,7 +63,7 @@ font pango:DejaVu Sans Mono 20
 
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+Shift+q kill
