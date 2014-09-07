@@ -120,14 +120,14 @@ bindsym $mod+a focus parent
 set $ws0 0: breaktime
 set $ws1 1: code
 set $ws2 2: servers
-set $ws3 undefined L
-set $ws4 undefined L
+set $ws3 undefined L1
+set $ws4 undefined L2
 
 set $ws5 5: comms
 set $ws6 6: sportsbook
 set $ws7 7: TDD
-set $ws8 undefined R
-set $ws9 undefined R
+set $ws8 undefined R1
+set $ws9 undefined R2
 
 
 set $screenL DisplayPort-0
