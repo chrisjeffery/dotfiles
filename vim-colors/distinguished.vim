@@ -37,8 +37,8 @@
 "	   | Highlight group                |  CTFG |  CTBG |    CTAttributes | || |   GUIFG |    GUIBG |   GUIAttributes |
 "	   |--------------------------------|-------|-------|-----------------| || |---------|----------|-----------------|
 call s:ColorDictParser({
-	\   'Normal'                      : [    231,    232,               '',      'ffffff',        '',               '']
-	\ , 'Visual'                      : [    240,    253,               '',      '585858',  'dadada',               '']
+	\   'Normal'                      : [    231,     '',               '',      'ffffff',        '',               '']
+	\ , 'Visual'                      : [    240,    232,               '',      '585858',  'dadada',               '']
 	\
 	\ , 'Cursor'                      : [     '',     '',               '',      'ffffff',  'dd4010',               '']
 	\ , 'lCursor'                     : [     '',     '',               '',      'ffffff',  '89b6e2',               '']
@@ -67,7 +67,7 @@ call s:ColorDictParser({
 	\ , 'WarningMsg'                  : [    202,     '',           'bold',      'ff5f00',        '',           'bold']
 	\ , 'ErrorMsg'                    : [    196,     '',           'bold',      'ff0000',        '',           'bold']
 	\
-	\ , 'Comment'                     : [    246,     '',               '',      '767676',  '121212',               '']
+	\ , 'Comment'                     : [    249,     '',               '',      '767676',  '121212',               '']
 	\ , 'vimCommentTitleLeader'       : [    252,     '',               '',      'bcbcbc',  '121212',               '']
 	\ , 'vimCommentTitle'             : [    252,     '',               '',      'bcbcbc',  '121212',               '']
 	\ , 'vimCommentString'            : [    249,     '',               '',      '8a8a8a',  '121212',               '']
