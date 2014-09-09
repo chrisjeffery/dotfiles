@@ -10,7 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-exec feh --bg-fill ~/Pictures/poi.jpg
+exec feh --bg-fill ~/desktop-bg
 
 client.focused #f59056 #333333 #ffffff #330000
 client.urgent	#ffddaa #333333 #ffffff #330000
