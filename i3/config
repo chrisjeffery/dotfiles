@@ -11,6 +11,8 @@
 
 set $mod Mod4
 exec feh --bg-fill ~/desktop-bg
+exec xrdb -merge ~/dotfiles/xresources_`hostname`
+
 
 client.focused #f59056 #333333 #ffffff #330000
 client.urgent	#ffddaa #333333 #ffffff #330000
@@ -20,6 +22,9 @@ client.urgent	#ffddaa #333333 #ffffff #330000
 #for_window [instance="spotify"] move workspace 10;
 
 set $term urxvt
+
+for_window [instance="urxvt"] border none;
+for_window [instance="[cC]hrom"] border none;
 
 exec $term -e 'vim -O ~/notes/workdo ~/notes/lifedo' -c todo;
 bindsym $mod+F2 exec $term -e 'vim -O ~/notes/workdo ~/notes/lifedo' -c todo;
@@ -48,15 +53,8 @@ for_window [instance="topfloat"] floating enable; border normal; resize grow hei
 for_window [instance="[kK]arma"] move workspace karma;
 for_window [instance="meld"] move workspace meld;
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below. ISO 10646 = Unicode
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, if you need a lot of unicode glyphs or
-# right-to-left text rendering, you should instead use pango for rendering and
-# chose a FreeType font, such as:
-
-font pango:DejaVu Sans Mono 20
+# font for window titles also used by bar unless specified
+font pango:DejaVu Sans Mono 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 # floating_modifier $mod;
@@ -220,6 +218,16 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 bar {
+    colors {
+        #background #262626
+        statusline #d0d0d0
+        separator #363636
+
+        focused_workspace  #c37561 #d1a375 #363636
+        active_workspace   #424242 #363636 #d0d0d0
+        inactive_workspace #424242 #363636 #7985a3
+        urgent_workspace   #ffffff #d0d0d0 #363636
+    }
     status_command $HOME/dotfiles/conky-i3bar.sh
     # status_command i3status
 }
