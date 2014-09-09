@@ -1,8 +1,9 @@
 !*font: xft:DejaVu Sans Mono:size=18
 !*foreground: #696969
 !*background: #282626
-*foreground: #aFa7a7
+*foreground: #cFc7c7
 *background: #3A3636
+
 *color0: #363636
 *color8: #424242
 *color1: #C37561
@@ -21,44 +22,6 @@
 *color15: #E6E6E6
 
 
-!DejaVu (Bitstream, good at 17, okay at 16)
-URxvt*font: xft:DejaVu Sans Mono for Powerline:size=16
-URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:style=Bold
-URxvt*italicFont: xft:DejaVu Sans Mono for Powerline:style=Oblique
-URxvt*boldItalicFont: xft:DejaVu Sans Mono for Powerline:style=Bold Oblique
-
-!Ubuntu
-!URxvt*font: xft:Ubuntu Mono derivative Powerline:size=20
-
-!Terminus
-!URxvt*font: xft:Terminess Powerline:size=20
-
-!Source Code Pro
-!URxvt*font: xft:Sauce Code Powerline:size=20
-
-!Inconsolata (good)
-!URxvt*font: xft:Inconsolata for Powerline:size=20
-
-!Droid (okay big at 20 and at 18)
-!URxvt*font: xft:Droid Sans Mono for Powerline:size=18
-
-!Anon (too serify)
-!URxvt*font: xft:Anonymice Powerline:size=20
-
-!Liberation (great at 18 good at 16)
-!URxvt*font: xft:Liberation Mono for Powerline:size=16
-
-!Meslo (okay at 18, readable at 16)
-!URxvt*font: xft:Meslo LG S for Powerline:size=16
-
-
-
-
-
-
-!URxvt*boldFont: xft:DejaVu Sans Mono Bold for Powerline:size=20
-!URxvt*italicFont: xft:DejaVu Sans Mono Oblique for Powerline:size=20
-!URxvt*boldItalicFont: xft:DejaVu Sans Mono Bold Oblique for Powerline:size=20
 URxvt*depth:                          32
 URxvt*scrollBar:                      false
 ! URxvt*background:                     #060606
@@ -97,9 +60,6 @@ URxvt*shading:                        20
 ! URxvt*cursorUnderline:                boolean
 ! URxvt*cursorBlink:                    boolean
 ! URxvt*pointerBlank:                   boolean
-
-
-
 
 ! URxvt*color0:                         color
 ! URxvt*color1:                         color

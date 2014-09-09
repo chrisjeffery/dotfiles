@@ -1,0 +1,29 @@
+!DejaVu (Bitstream, good at 17, okay at 16)
+URxvt*font: xft:DejaVu Sans Mono for Powerline:size=16
+URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:style=Bold
+URxvt*italicFont: xft:DejaVu Sans Mono for Powerline:style=Oblique
+URxvt*boldItalicFont: xft:DejaVu Sans Mono for Powerline:style=Bold Oblique
+
+!Ubuntu
+!URxvt*font: xft:Ubuntu Mono derivative Powerline:size=20
+
+!Terminus
+!URxvt*font: xft:Terminess Powerline:size=20
+
+!Source Code Pro
+!URxvt*font: xft:Sauce Code Powerline:size=20
+
+!Inconsolata (good)
+!URxvt*font: xft:Inconsolata for Powerline:size=20
+
+!Droid (okay big at 20 and at 18)
+!URxvt*font: xft:Droid Sans Mono for Powerline:size=18
+
+!Anon (too serify)
+!URxvt*font: xft:Anonymice Powerline:size=20
+
+!Liberation (great at 18 good at 16)
+!URxvt*font: xft:Liberation Mono for Powerline:size=16
+
+!Meslo (okay at 18, readable at 16)
+!URxvt*font: xft:Meslo LG S for Powerline:size=16

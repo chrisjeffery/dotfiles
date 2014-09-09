@@ -1,0 +1,6 @@
+URxvt*font: xft:Ubuntu Mono for Powerline:size=10
+URxvt*boldFont: xft:Ubuntu Mono for Powerline:style=Bold
+URxvt*italicFont: xft:Ubuntu Mono for Powerline:style=Oblique
+URxvt*boldItalicFont: xft:Ubuntu Mono for Powerline:style=Bold Oblique
+
+
