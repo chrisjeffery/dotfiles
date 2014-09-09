@@ -82,8 +82,6 @@
 	diff = true
 [push]
 	default = upstream
-[user]
-	email = chris.jeffery@geneity.co.uk
 [rerere]
 	enabled = true
 [merge]
