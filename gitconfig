@@ -1,5 +1,5 @@
 [core]
-    editor = /usr/bin/vim
+    editor = /usr/bin/nvim
     pager=less -FR -x4
 
 [alias]
@@ -92,3 +92,6 @@
 	cmd = vim -O $BASE $LOCAL $REMOTE $MERGED
 
 	trustExitCode = true
+[user]
+	email = chris.jeffery@gmail.com
+	name = Chris Jeffery
