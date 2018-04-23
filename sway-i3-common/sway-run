@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Combine shared (i3 & sway) config with sway specific stuff
+dir=~/dotfiles/sway-i3-common
+file=$(mktemp)
+echo $dir
+
+cat $dir/shared.config \
+    $dir/bar.config \
+    $dir/workspaces.config \
+    $dir/sway.config > $file
+
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
+export XKB_DEFAULT_LAYOUT=gb
+
+# Start sway
+# cat $file
+ssh-agent sway -c $file 2> ~/.sway.log
