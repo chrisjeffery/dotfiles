@@ -1,0 +1,24 @@
+iw
+wpa_supplicant
+dialog
+intel-ucode
+grub
+parted
+efibootmgr
+terminus-font
+base-devel
+ttf-dejavu
+powerline-fonts
+neovim
+xorg-xrdb
+zsh
+rxvt-unicode
+pulseaudio
+alsa-utils
+openssh
+xclip
+htop
+the_silver_searcher
+# for i3
+xorg-server
+xorg-xinit
