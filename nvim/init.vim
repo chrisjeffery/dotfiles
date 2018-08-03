@@ -24,22 +24,29 @@ vnoremap > >gv
 vnoremap < <gv
 
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'Lokaltog/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'airblade/vim-gitgutter'
-" Plug 'fholgado/minibufexpl.vim'
+Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
 Plug 'kien/ctrlp.vim'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'mileszs/ack.vim'
+Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
+Plug 'styled-components/vim-styled-components'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'valloric/youcompleteme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'fholgado/minibufexpl.vim'
 cal plug#end()
 
 noremap <script> <silent> <unique> <C-b> :CtrlPBuffer<CR>
@@ -52,10 +59,50 @@ endif
 
 " airline (powerline)
 let g:airline_powerline_fonts = 1
-let g:airline_theme='distinguished'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+124, 106, 172, 66, 132, 72, 167, 142, 314, 109, 175, 108
+
+
+" gruvbox aqua
+" gruvbox purple
+" gruvbox blue
+" gruvbox yellow
+" gruvbox green
+" gruvbox red
+" gruvbox aqua
+" gruvbox purple
+" gruvbox blue
+" gruvbox yellow
+" gruvbox green
+" gruvbox red
+
+let g:rbpt_colorpairs = [
+    \ ['108',   '8ec07c'],
+    \ ['175',   'd3869b'],
+    \ ['109',   '83a598'],
+    \ ['214',   'fabd2f'],
+    \ ['142',   'b8bb26'],
+    \ ['167',   'fb4934'],
+    \ ['72',    '689d6a'],
+    \ ['132',   'b16286'],
+    \ ['66',    '458588'],
+    \ ['172',   'd79921'],
+    \ ['106',   '98971a'],
+    \ ['124',   'cc241d'],
+    \ ]
+
+let g:rbpt_loadcmd_toggle = 0
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " pangloss/vim-javascript settings
 let g:javascript_conceal_function             = "ƒ"
@@ -79,8 +126,8 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map  ? <Plug>(easymotion-sn)
 omap ? <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+"map  n <Plug>(easymotion-next)
+"map  N <Plug>(easymotion-prev)
 
 " Search for selected text, forwards or backwards.
 " should delete or replace this with easymotion searching?
@@ -98,3 +145,11 @@ vnoremap <silent> * :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+"themeing
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_highlight_lines = 0
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
+let g:airline_theme='distinguished'
+highlight clear SignColumn
