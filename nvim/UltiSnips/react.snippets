@@ -23,13 +23,13 @@ export default $1
 endsnippet
 
 snippet <> "jsx element with children"
-<$1 ${2:\{...props\}}>
-  $3
+<$1 ${2:\{...props\}} ${3: $4=\{$5\}}>
+  $6
 </$1>
 endsnippet
 
 snippet </> "jsx element without children"
-<$1 ${2:\{...props\}}/>
+<$1 ${2:\{...props\}} ${3: $4=\{$5\}} />
 endsnippet
 
 snippet rsc "react stateless component TS"
