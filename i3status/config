@@ -1,0 +1,42 @@
+general {
+  colors = false
+  interval = 1
+}
+
+# order += "volume master"
+# order += "cpu_temperature 0"
+
+order += "battery 0"
+order += "wireless wlp2s0"
+order += "time"
+order += "load"
+
+load {
+  format = "load: %1min %5min %15min"
+}
+
+time {
+  format = "%y-%m-%d - %H:%M:%S"
+}
+
+battery 0 {
+  format = "%status %percentage %remaining (%emptytime %consumption)"
+  status_full = "battery full"
+}
+
+cpu_temperature 0 {
+  format = "temp: %degreesC"
+}
+
+wireless wlp2s0 {
+    format_up = "wifi: %quality %essid %ip"
+    format_down = ""
+}
+
+volume master {
+    format = "volume: %volume"
+    format_muted = "volume: M"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
