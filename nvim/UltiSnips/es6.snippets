@@ -1,0 +1,30 @@
+extends react
+extends jest
+
+snippet clg
+console.log(\{$1\})
+endsnippet
+
+snippet style "styled component"
+export const $1 = styled.$2\`
+  $3
+\`
+endsnippet
+
+snippet imp "import X from 'x"
+import $2 from "$1"
+endsnippet
+
+snippet : "comma separated property"
+$1: $2,
+endsnippet
+
+snippet {} "object literal declaration"
+const $1 = \{
+  $2
+\}
+endsnippet
+
+snippet wrap "enyme mount"
+const wrapper = mount(<$1 ${2:\{...props\}}/>)
+endsnippet

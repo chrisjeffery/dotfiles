@@ -1,0 +1,49 @@
+snippet rclass "react class TS"
+
+export interface I$1Props \{\}
+
+export interface I$1State \{\}
+
+class $1 extends React.Component<I$1Props, I$1State> \{
+
+  constructor(props: I$1Props) \{
+    super(props)
+    this.state = \{ 
+		  $2
+		\}
+  \}
+
+  render() \{
+    return (
+    )
+  \}
+\}
+
+export default $1
+endsnippet
+
+snippet <> "jsx element with children"
+<$1 ${2:\{...props\}}>
+  $3
+</$1>
+endsnippet
+
+snippet </> "jsx element without children"
+<$1 ${2:\{...props\}}/>
+endsnippet
+
+snippet rsc "react stateless component TS"
+export interface I$1Props \{
+\}
+
+const ${1:ComponentName}: React.StatelessComponent<I$1Props> = (\{
+  $2
+\}: I$1Props) => \{
+
+  return (
+	  $3
+  )
+\}
+
+export default $1
+endsnippet
