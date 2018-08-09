@@ -1,11 +1,11 @@
-!*font: xft:DejaVu Sans Mono:size=18
-!*foreground: #696969
-!*background: #282626
-*foreground: #cFc7c7
-*background: #3A3636
+*font: xft:DejaVu Sans Mono for Powerline:size=14
 
-*color0: #363636
-*color8: #424242
+
+*foreground: #cFc7c7
+*background: #2A2626
+
+*color0: #464646
+*color8: #625656
 *color1: #C37561
 *color9: #D19485
 *color2: #A0A57E
@@ -22,11 +22,14 @@
 *color15: #E6E6E6
 
 
-URxvt*depth:                          32
-URxvt*scrollBar:                      false
+URxvt.perl-ext-common: resize-font
+
+URxvt*depth:                            32
+URxvt*scrollBar:                        false
+URxvt*cursorColor:                    #dddddd
 ! URxvt*background:                     #060606
-URxvt*transparent:                    true
-URxvt*shading:                        20
+! URxvt*transparent:                    true
+! URxvt*shading:                        20
 ! URxvt*foreground:                     #eeeeee
 ! URxvt*termName:                       string
 ! URxvt*geometry:                       geometry
@@ -86,7 +89,6 @@ URxvt*shading:                        20
 ! URxvt*troughColor:                    color
 ! URxvt*highlightColor:                 color
 ! URxvt*highlightTextColor:             color
-URxvt*cursorColor:                    #dddddd
 ! URxvt*cursorColor2:                   color
 ! URxvt*pointerColor:                   color
 ! URxvt*pointerColor2:                  color
