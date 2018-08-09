@@ -1,6 +1,11 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
 
 
 RS="\[\033[0m\]"    # reset
@@ -25,14 +30,6 @@ BCYN="\[\033[46m\]" # background cyan
 
 ERS='echo -e "\[\033[0m\]"'
 EFGRN='echo -e "\[\033[32m\]"'
-
-
-#######################################################
-# This file is controlled by puppet if it is in /etc! #
-#######################################################
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
 
 set completion-ignore-case on
 
@@ -63,9 +60,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -79,41 +73,16 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# commented out to default to PS1 in /etc/bash.bashrc
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-
 unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-	PS1="${debian_chroot:+($debian_chroot)}\t $FGRN\W$FWHT$HC\$$RS "
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=always'
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
 fi
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -133,8 +102,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# easily reload bashrc
-
 
 # source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh 
 
@@ -147,43 +114,13 @@ function vr {
 	vim $(grep -lrs $1 ./)
 }
 
-function vrp {
-	vim $(grep -lrs $1 $2)
-}
-
-
-function pbfv {
-    export PROJ_HOME=$GIT/PROJ-BetfairVirtual
-    export PATH=$BASE_PATH:$PROJ_HOME/python/bin
-    export PYTHONPATH=$PROJ_HOME/python/appserv
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/resources/db/oracle
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/lib
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/apps/python
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/userauth/python
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/python/pools/utils
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/feeds/python
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/sportsbook/apps/python
-    export PYTHONPATH=$PYTHONPATH:$PROJ_HOME/custacct/python
-}
-
-
 set_term_title() { 
 	echo -en "\033]0;$1\a"
 }
 
-runlog() {
-	FILE="$1"
-	FILENAME="${FILE%%.*}"
-	./$FILE | tee -a "/home/cjeffery/serverlogs/${FILENAME}.log"
-}
-
-function sbserver {
-	echo "starting server $1"
-	set_term_title $1
-	runlog $1
-}
-
 export EDITOR=vim
-alias nobeeps='sudo rmmod pcspkr'
 alias wifi='sudo wifi-menu'
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
