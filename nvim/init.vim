@@ -27,6 +27,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
+Plug 'ervandew/supertab'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
@@ -39,6 +40,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
+Plug 'sirver/ultisnips'
 Plug 'styled-components/vim-styled-components'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -62,13 +64,26 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-124, 106, 172, 66, 132, 72, 167, 142, 314, 109, 175, 108
+let g:UltiSnipsSnippetsDir="~/dotfiles/nvim/UltiSnips"
+" let g:UltiSnipsSnippetDirectories = ['~/dotfiles/UltiSnips', 'UltiSnips']
+" let g:UltiSnipsSnippetDirectories = ['.vim/UltiSnips', 'UltiSnips'].
 
 
+
+" the following rpbt_colorpairs are mapped to the gruvbox dark theme colours
 " gruvbox aqua
 " gruvbox purple
 " gruvbox blue
