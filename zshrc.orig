@@ -1,0 +1,28 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored _match
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' format 'completing %d'
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' menu select=10
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' substitute 1
+zstyle ':completion:*' verbose true
+zstyle :compinstall filename '/home/chris/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=1000000
+setopt appendhistory
+unsetopt autocd beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+#
+source ~/dotfiles/aliases
