@@ -1,0 +1,8 @@
+alias vim=nvim
+alias wifi="sudo wifi-menu"
+alias shutdown="sudo shutdown -h now"
+
+# acuris
+alias rsc="cd ~/acuris/react-shared-components"
+alias ft="cd ~/acuris/frontend-toolkit"
+
