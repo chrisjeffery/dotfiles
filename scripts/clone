@@ -1,0 +1,7 @@
+#!/bin/bash
+
+p=`realpath $0`
+scripts=`dirname $p`
+externaldisplay=`$scripts/x-connected-displays.sh`
+
+xrandr --output $externaldisplay --same-as eDP-1
